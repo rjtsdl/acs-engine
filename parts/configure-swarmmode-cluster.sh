@@ -29,7 +29,6 @@ AZUREUSER=${4}
 POSTINSTALLSCRIPTURI=${5}
 BASESUBNET=${6}
 DOCKERENGINEDOWLOADREPO=${7}
-DOCKERENGINEVERSION=${8}
 VMNAME=`hostname`
 VMNUMBER=`echo $VMNAME | sed 's/.*[^0-9]\([0-9]\+\)*$/\1/'`
 VMPREFIX=`echo $VMNAME | sed 's/\(.*[^0-9]\)*[0-9]\+$/\1/'`
@@ -42,7 +41,6 @@ echo "VMNUMBER: $VMNUMBER, VMPREFIX: $VMPREFIX"
 echo "BASESUBNET: $BASESUBNET"
 echo "AZUREUSER: $AZUREUSER"
 echo "DOCKERENGINEDOWLOADREPO: $DOCKERENGINEDOWLOADREPO"
-echo "DOCKERENGINEVERSION: $DOCKERENGINEVERSION"
 
 ###################
 # Common Functions
@@ -161,7 +159,6 @@ installDocker()
       [ $? -eq 0 ] && break || sleep 5; 
     done
     echo "deb $DOCKERENGINEDOWLOADREPO ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
-    echo "Package: docker-engine\nPin: version $DOCKERENGINEVERSION\nPin-Priority: 550\n" > /etc/apt/preferences.d/docker.pref
     apt-get update
     apt-get install -y docker-ce=${DOCKER_CE_VERSION}
     if [ $? -eq 0 ]
