@@ -28,6 +28,8 @@ MASTERFIRSTADDR=${3}
 AZUREUSER=${4}
 POSTINSTALLSCRIPTURI=${5}
 BASESUBNET=${6}
+DOCKERENGINEDOWLOADREPO=${7}
+DOCKERENGINEVERSION=${8}
 VMNAME=`hostname`
 VMNUMBER=`echo $VMNAME | sed 's/.*[^0-9]\([0-9]\+\)*$/\1/'`
 VMPREFIX=`echo $VMNAME | sed 's/\(.*[^0-9]\)*[0-9]\+$/\1/'`
@@ -39,6 +41,8 @@ echo "vmname: $VMNAME"
 echo "VMNUMBER: $VMNUMBER, VMPREFIX: $VMPREFIX"
 echo "BASESUBNET: $BASESUBNET"
 echo "AZUREUSER: $AZUREUSER"
+echo "DOCKERENGINEDOWLOADREPO: $DOCKERENGINEDOWLOADREPO"
+echo "DOCKERENGINEVERSION: $DOCKERENGINEVERSION"
 
 ###################
 # Common Functions
@@ -152,8 +156,12 @@ installDocker()
 {
   for i in {1..10}; do
     apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-    curl --max-time 60 -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - 
-    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    for i in 1 2 3 4 5; do 
+      curl --max-time 60 -fsSL https://aptdocker.azureedge.net/gpg | apt-key add -; 
+      [ $? -eq 0 ] && break || sleep 5; 
+    done
+    echo "deb $DOCKERENGINEDOWLOADREPO ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+    echo "Package: docker-engine\nPin: version $DOCKERENGINEVERSION\nPin-Priority: 550\n" > /etc/apt/preferences.d/docker.pref
     apt-get update
     apt-get install -y docker-ce=${DOCKER_CE_VERSION}
     if [ $? -eq 0 ]
