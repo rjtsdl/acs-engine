@@ -167,7 +167,7 @@ installDocker()
     curl --max-time 60 -fsSL https://aptdocker.azureedge.net/gpg | apt-key add -; 
     [ $? -eq 0 ] && break || sleep 5; 
   done
-  echo "deb $DOCKERENGINEDOWLOADREPO ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+  add-apt-repository "deb $DOCKERENGINEDOWLOADREPO ubuntu-xenial main"
   apt-get update
   apt-get install -y docker-engine
   echo "Docker installed successfully"

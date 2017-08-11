@@ -11,7 +11,7 @@
     "agentRunCmdFile": "[concat(' -  content: |\n        #!/bin/bash\n        ','sudo mkdir -p /var/log/azure\n        ',variables('agentCustomScript'),'\n    path: /opt/azure/containers/install-cluster.sh\n    permissions: \"0744\"\n')]",
     "agentMaxVMs": 100,
     "dockerEngineDownloadRepo": "[parameters('dockerEngineDownloadRepo')]",
-    "clusterInstallParameters": "[concat(variables('masterCount'), ' ',variables('masterVMNamePrefix'), ' ',variables('masterFirstAddrOctet4'), ' ',variables('adminUsername'), ' ',variables('dockerEngineDownloadRepo'), ' ',variables('postInstallScriptURI'),' ',variables('masterFirstAddrPrefix'))]",
+    "clusterInstallParameters": "[concat(variables('masterCount'), ' ',variables('masterVMNamePrefix'), ' ',variables('masterFirstAddrOctet4'), ' ',variables('adminUsername'), ' ',variables('postInstallScriptURI'), ' ',variables('masterFirstAddrPrefix'),  ' ',variables('dockerEngineDownloadRepo'))]",
 {{if .LinuxProfile.HasSecrets}}
     "linuxProfileSecrets" :
       [
