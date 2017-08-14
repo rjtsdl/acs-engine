@@ -163,14 +163,16 @@ echo "Installing and configuring docker"
 
 installDocker()
 {
-  for i in 1 2 3 4 5; do 
-    curl --max-time 60 -fsSL https://aptdocker.azureedge.net/gpg | apt-key add -; 
-    [ $? -eq 0 ] && break || sleep 5; 
+  for i in {1..10}; do
+    wget --tries 4 --retry-connrefused --waitretry=15 -qO- https://get.docker.com | sh
+    if [ $? -eq 0 ]
+    then
+      # hostname has been found continue
+      echo "Docker installed successfully"
+      break
+    fi
+    sleep 10
   done
-  add-apt-repository "deb $DOCKERENGINEDOWLOADREPO ubuntu-xenial main"
-  apt-get update
-  apt-get install -y docker-engine
-  echo "Docker installed successfully"
 }
 time installDocker
 sudo usermod -aG docker $AZUREUSER
