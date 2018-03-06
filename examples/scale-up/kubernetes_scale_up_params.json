@@ -62,8 +62,8 @@
   "kubernetesDashboardSpec": {
     "value": "k8s-gcrio.azureedge.net/kubernetes-dashboard-amd64:v1.5.1"
   },
-  "kubernetesExecHealthzSpec": {
-    "value": "k8s-gcrio.azureedge.net/exechealthz-amd64:1.2"
+  "kubernetesDNSSidecarSpec": {
+    "value": "k8s-gcrio.azureedge.net/k8s-dns-sidecar-amd64:1.14.8"
   },
   "kubernetesHeapsterSpec": {
     "value": "k8s-gcrio.azureedge.net/heapster:v1.2.0"

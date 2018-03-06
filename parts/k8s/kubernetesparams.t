@@ -279,10 +279,10 @@
       },
       "type": "string"
     },
-    "kubernetesExecHealthzSpec": {
-      {{PopulateClassicModeDefaultValue "kubernetesExecHealthzSpec"}}
+    "kubernetesDNSSidecarSpec": {
+      {{PopulateClassicModeDefaultValue "kubernetesDNSSidecarSpec"}}
       "metadata": {
-        "description": "The container spec for exechealthz-amd64."
+        "description": "The container spec for k8s-dns-sidecar-amd64."
       },
       "type": "string"
     },

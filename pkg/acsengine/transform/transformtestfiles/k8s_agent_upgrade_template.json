@@ -860,10 +860,10 @@
       },
       "type": "string"
     },
-    "kubernetesExecHealthzSpec": {
+    "kubernetesDNSSidecarSpec": {
       "defaultValue": "",
       "metadata": {
-        "description": "The container spec for exechealthz-amd64."
+        "description": "The container spec for k8s-dns-sidecar-amd64."
       },
       "type": "string"
     },
@@ -1162,7 +1162,7 @@
     "kubernetesAddonResizerSpec": "[parameters('kubernetesAddonResizerSpec')]",
     "kubernetesDNSMasqSpec": "[parameters('kubernetesDNSMasqSpec')]",
     "kubernetesDashboardSpec": "[parameters('kubernetesDashboardSpec')]",
-    "kubernetesExecHealthzSpec": "[parameters('kubernetesExecHealthzSpec')]",
+    "kubernetesDNSSidecarSpec": "[parameters('kubernetesDNSSidecarSpec')]",
     "kubernetesHeapsterSpec": "[parameters('kubernetesHeapsterSpec')]",
     "kubernetesHyperkubeSpec": "[parameters('kubernetesHyperkubeSpec')]",
     "kubernetesKubeDNSSpec": "[parameters('kubernetesKubeDNSSpec')]",

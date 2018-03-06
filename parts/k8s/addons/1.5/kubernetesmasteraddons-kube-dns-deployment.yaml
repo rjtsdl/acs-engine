@@ -142,7 +142,7 @@ spec:
         - "--url=/healthz-kubedns"
         - "--port=8080"
         - "--quiet"
-        image: <kubernetesExecHealthzSpec>
+        image: <kubernetesDNSSidecarSpec>
         livenessProbe:
           failureThreshold: 5
           httpGet:
